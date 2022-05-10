@@ -1,0 +1,31 @@
+// start input button styles
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+button[type="button"],
+button[type="submit"],
+button[type="reset"],
+button {
+  border: none;
+  background: transparent;
+  color: $font-custom-color !important;
+  font-size: $font-size-small;
+  font-weight: $font-weight-bold-two;
+  text-decoration: none;
+  text-transform: capitalize;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+
+  :active {
+    outline: none;
+  }
+
+  &:disabled {
+    background-color: $disabled-bg;
+    border-color: transparent !important;
+    pointer-events: none;
+  }
+}

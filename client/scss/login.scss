@@ -1,0 +1,28 @@
+.login-page {
+  .left-column {
+    .login-banner {
+      height: 100vh;
+      object-fit: cover;
+      overflow: hidden;
+      width: 100%;
+    }
+  }
+  .right-column {
+    width: 50%;
+
+    @include media-breakpoint-down(md) {
+      width: 100%;
+    }
+
+    .login-form {
+      max-width: 420px;
+      margin-left: 52px;
+      margin-right: 52px;
+
+      .button-link {
+        width: 120px;
+        height: 40px;
+      }
+    }
+  }
+}

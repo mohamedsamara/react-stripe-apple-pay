@@ -1,0 +1,27 @@
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  font-family: $font-family-body;
+}
+
+main {
+  flex: 1;
+  min-height: 100%;
+}
+
+a {
+  color: $black;
+}
+
+.logo {
+  background-image: $money;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  height: 30px;
+  width: 30px;
+}

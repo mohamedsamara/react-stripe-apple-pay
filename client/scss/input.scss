@@ -1,0 +1,31 @@
+// start input text styles
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="file"],
+textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: $border-default;
+  font-size: $font-size-medium;
+  color: $font-custom-color;
+  border-radius: $border-radius-default;
+  -webkit-transition: $layout-transition-speed;
+  transition: $layout-transition-speed;
+  cursor: text;
+
+  &:focus {
+    outline: none;
+    color: $font-focus-color;
+    border-color: $border-focus-color !important;
+    box-shadow: none;
+    -webkit-transition: $layout-transition-speed;
+    transition: $layout-transition-speed;
+  }
+
+  &:disabled {
+    background-color: $disabled-bg;
+    border: none !important;
+    cursor: not-allowed;
+  }
+}
