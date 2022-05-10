@@ -3,4 +3,5 @@ export interface IConfigKeys {
   port: number;
   stripe_publishable_key: string;
   stripe_secret_key: string;
+  api_url: string;
 }

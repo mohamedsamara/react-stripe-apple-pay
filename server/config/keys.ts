@@ -10,6 +10,7 @@ const config: IConfigKeys = {
   port: PORT || 3000,
   stripe_publishable_key: ENV.STRIPE_PUBLISHABLE_KEY || "",
   stripe_secret_key: ENV.STRIPE_SECRET_KEY || "",
+  api_url: `/api/v1`,
 };
 
 export default config;
