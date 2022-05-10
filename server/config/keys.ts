@@ -1,5 +1,4 @@
 import "dotenv/config";
-import * as fs from "fs";
 
 import { IConfigKeys } from "@/types/config";
 

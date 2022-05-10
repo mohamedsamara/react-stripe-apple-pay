@@ -14,6 +14,7 @@ module.exports = {
       "@": `${paths.client}`,
       "@components": `${paths.client}/components`,
       "@pages": `${paths.client}/pages`,
+      "@constants": `${paths.client}/constants`,
       images: `${paths.assets}/${paths.images}`,
     },
     extensions: [".ts", ".tsx", ".js", "jsx", "json", ".css", ".scss"],

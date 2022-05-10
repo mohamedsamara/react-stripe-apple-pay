@@ -4,7 +4,8 @@
     "paths": {
       "@/*": ["./*"],
       "@components/*": ["components/*"],
-      "@pages/*": ["pages/*"]
+      "@pages/*": ["pages/*"],
+      "@constants/*": ["constants/*"]
     }
   },
   "extends": "../tsconfig.client.json"
