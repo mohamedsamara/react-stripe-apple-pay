@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
-import Login from "@/pages/Login";
-import Dashboard from "@/pages/Dashboard";
-import NoMatch from "@/components/NoMatch";
-import RequireAuth from "@/components/RequireAuth";
+import Login from "@pages/Login";
+import Dashboard from "@pages/Dashboard";
+import NoMatch from "@components/NoMatch";
+import RequireAuth from "@components/RequireAuth";
 
 const App: FC = () => {
   return (

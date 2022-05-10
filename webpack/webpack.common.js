@@ -12,6 +12,8 @@ module.exports = {
   resolve: {
     alias: {
       "@": `${paths.client}`,
+      "@components": `${paths.client}/components`,
+      "@pages": `${paths.client}/pages`,
       images: `${paths.assets}/${paths.images}`,
     },
     extensions: [".ts", ".tsx", ".js", "jsx", "json", ".css", ".scss"],

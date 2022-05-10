@@ -160,11 +160,18 @@ const clientConfig = merge(common, {
 const serverConfig = {
   mode: "production",
   context: paths.server,
-  entry: "./server.ts",
+  entry: "./index.ts",
   output: {
     publicPath,
     filename: "server.js",
     path: paths.build,
+  },
+  resolve: {
+    alias: {
+      "@": `${paths.server}`,
+      "@config": `${paths.server}/config`,
+    },
+    extensions: [".ts", ".js"],
   },
   module: {
     rules: [
@@ -173,13 +180,10 @@ const serverConfig = {
         loader: "ts-loader",
         exclude: /node_modules/,
         options: {
-          configFile: "tsconfig.server.json",
+          configFile: `${paths.server}/tsconfig.json`,
         },
       },
     ],
-  },
-  resolve: {
-    extensions: [".ts", ".js"],
   },
   target: "node",
   node: {

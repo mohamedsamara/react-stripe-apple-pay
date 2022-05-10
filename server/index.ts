@@ -1,8 +1,11 @@
 import express from "express";
 import path from "path";
 
-const app = express();
+import config from "@config/keys";
 
+const PORT = config.port;
+
+const app = express();
 app.use(express.static(path.resolve(__dirname, "./static")));
 
 app.use("/api/test", (req, res) => {
@@ -16,12 +19,12 @@ app.use("/api/test", (req, res) => {
   }
 });
 
-if (process.env.NODE_ENV === "production") {
+if (config.node_env === "production") {
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "./static/index.html"));
   });
 }
 
-app.listen(3000, () => {
-  console.log(`Server running on http://localhost:3000`);
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
 });

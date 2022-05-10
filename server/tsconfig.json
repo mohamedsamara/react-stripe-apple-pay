@@ -2,8 +2,12 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["../server/*"]
+      "@/*": ["./*"],
+      "@config/*": ["config/*"]
     }
+  },
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
   },
   "extends": "../tsconfig.server.json"
 }
