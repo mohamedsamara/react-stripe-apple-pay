@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import {
   useStripe,
   useElements,
-  CardElement,
   PaymentRequestButtonElement,
 } from "@stripe/react-stripe-js";
 import axios from "axios";
@@ -11,40 +10,16 @@ import axios from "axios";
 import { API_URL } from "@/constants";
 import { useStore } from "@/store";
 
-const useOptions = () => {
-  const options = useMemo(
-    () => ({
-      hidePostalCode: true,
-      iconStyle: "solid" as any,
-      style: {
-        iconColor: "#718096",
-        base: {
-          color: "#718096",
-          height: "40px",
-          "::placeholder": {
-            color: "#718096",
-          },
-        },
-        invalid: {
-          color: "#eb1c26",
-        },
-      },
-    }),
-    []
-  );
-
-  return options;
-};
-
 const Checkout: FC = () => {
   const stripe = useStripe() as any;
   const elements = useElements();
-  const options = useOptions();
   const [paymentRequest, setPaymentRequest] = useState<any>(null);
 
   const subscriptionPlan = useStore((state) => state.subscriptionPlan);
   const amount = subscriptionPlan?.unit_amount;
   const PRICE = amount / 100;
+
+  // if (!elements || !stripe) return <div>Loading...</div>;
 
   useEffect(() => {
     if (stripe) {
@@ -111,17 +86,6 @@ const Checkout: FC = () => {
     }
 
     event.complete("success");
-
-    // const res = await axios.post(`${API_URL}/checkout`, {
-    //   email,
-    //   name,
-    //   customerData,
-    //   platform: "ios",
-    // });
-
-    // if (res.status === 200) {
-    //   const { authenticated, user } = res.data;
-    // }
   };
 
   return (

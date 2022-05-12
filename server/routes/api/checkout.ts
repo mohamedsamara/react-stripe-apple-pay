@@ -22,15 +22,6 @@ router.post("/", async (req: any, res: any) => {
       expand: ["latest_invoice.payment_intent"],
     });
 
-    res.cookie(
-      "customer",
-      { customer, subscription_id: subscription.id },
-      {
-        maxAge: 1000 * 60 * 60 * 24,
-        secure: process.env.NODE_ENV !== "development",
-      }
-    );
-
     success(res, {
       subscriptionId: subscription.id,
       clientSecret: subscription.latest_invoice.payment_intent.client_secret,

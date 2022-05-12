@@ -4,13 +4,14 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
 
+import { useStore } from "@/store";
 import { API_URL, STRIPE_PUBLISHABLE_KEY } from "@/constants";
 import Login from "@pages/Login";
 import Dashboard from "@pages/Dashboard";
 import Checkout from "@pages/Checkout";
 import NoMatch from "@components/NoMatch";
 import RequireAuth from "@components/RequireAuth";
-import { useStore } from "@/store";
+import Spinner from "@components/Spinner";
 
 const stripePromise = loadStripe(STRIPE_PUBLISHABLE_KEY);
 
@@ -35,7 +36,7 @@ const App: FC = () => {
     setSubscriptionPlan(response.data?.prices?.[0]);
   };
 
-  if (!subscriptionPlan) return <div>Loading...</div>;
+  if (!subscriptionPlan) return <Spinner floating />;
 
   return (
     <Elements stripe={stripePromise} options={ELEMENTS_OPTIONS}>
