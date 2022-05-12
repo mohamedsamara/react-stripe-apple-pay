@@ -15,7 +15,8 @@
     "Node",
     "Apple",
     "Apple Pay",
-    "Stripe"
+    "Stripe",
+    "Zustand"
   ],
   "author": "Mohamed Samara (https://github.com/mohamedsamara)",
   "license": "MIT",

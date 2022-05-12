@@ -19,6 +19,8 @@ This project is boostrapped with [react-node-typescript](https://github.com/moha
 
 - [React](https://reactjs.org/)
 
+- [Zustand](https://github.com/pmndrs/zustand)
+
 - [Stripe](https://stripe.com/)
 
 </dl>
