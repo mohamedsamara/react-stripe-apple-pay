@@ -80,6 +80,7 @@
     "stripe": "^9.0.0",
     "workbox-core": "^6.5.3",
     "workbox-precaching": "^6.5.3",
-    "workbox-routing": "^6.5.3"
+    "workbox-routing": "^6.5.3",
+    "zustand": "^4.0.0-rc.1"
   }
 }

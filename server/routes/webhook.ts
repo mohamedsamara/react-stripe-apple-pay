@@ -5,26 +5,30 @@ const router = express.Router();
 import config from "@config/keys";
 import stripe from "@utils/stripe";
 
+const endpointSecret = config.stripe_webhook_secret;
+
 router.post(
   "/webhook",
   express.raw({ type: "application/json" }),
-  async (req, res) => {
-    let event;
-    const signature = req.headers["stripe-signature"] as any;
+  async (request, response) => {
+    let event = request.body;
+    const signature = request.headers["stripe-signature"] as any;
 
-    try {
-      event = stripe.webhooks.constructEvent(
-        req.body,
-        signature,
-        config.stripe_webhook_secret
-      );
-    } catch (err) {
-      console.log(err);
-      console.log(`⚠️ Webhook signature verification failed.`);
-      console.log(
-        `⚠️ Check the env file and enter the correct webhook secret.`
-      );
-      return res.sendStatus(400);
+    if (endpointSecret) {
+      try {
+        event = stripe.webhooks.constructEvent(
+          request.body,
+          signature,
+          endpointSecret
+        );
+      } catch (err) {
+        console.log(err);
+        console.log(`⚠️ Webhook signature verification failed.`);
+        console.log(
+          `⚠️ Check the env file and enter the correct webhook secret.`
+        );
+        return response.sendStatus(400);
+      }
     }
 
     const dataObject = event.data.object as any;
@@ -33,8 +37,6 @@ router.post(
 
     let customer_id;
     let subscription_id;
-    let user;
-    let userDoc;
 
     switch (event.type) {
       case "invoice.payment_succeeded":
@@ -110,7 +112,7 @@ router.post(
         }
       default:
     }
-    res.sendStatus(200);
+    response.send();
   }
 );
 

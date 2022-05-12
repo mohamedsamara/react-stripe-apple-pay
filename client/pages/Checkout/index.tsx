@@ -9,6 +9,7 @@ import {
 import axios from "axios";
 
 import { API_URL } from "@/constants";
+import { useStore } from "@/store";
 
 const useOptions = () => {
   const options = useMemo(
@@ -41,21 +42,9 @@ const Checkout: FC = () => {
   const options = useOptions();
   const [paymentRequest, setPaymentRequest] = useState<any>(null);
 
-  const [product, setProduct] = useState<any>();
-  const [price, setPrice] = useState(0);
-
-  useEffect(() => {
-    fetchPlans();
-  }, []);
-
-  const fetchPlans = async () => {
-    const response = await axios.get(`${API_URL}/checkout/plans`);
-    const product = response.data?.prices?.[0];
-    setProduct(product);
-    const amount = product?.unit_amount;
-    const price = amount / 100;
-    setPrice(price);
-  };
+  const subscriptionPlan = useStore((state) => state.subscriptionPlan);
+  const amount = subscriptionPlan?.unit_amount;
+  const PRICE = amount / 100;
 
   useEffect(() => {
     if (stripe) {
@@ -64,7 +53,7 @@ const Checkout: FC = () => {
         currency: "usd",
         total: {
           label: "Membership",
-          amount: price,
+          amount: PRICE,
         },
         requestPayerName: true,
         requestPayerEmail: true,
@@ -77,7 +66,7 @@ const Checkout: FC = () => {
         }
       });
     }
-  }, [stripe, price]);
+  }, [stripe]);
 
   const onPaymentSubmit = () => {
     paymentRequest.on("paymentmethod", handlePaymentRequest);
@@ -85,12 +74,14 @@ const Checkout: FC = () => {
 
   const handlePaymentRequest = async (event: any) => {
     const email = event.payerEmail;
+    const name = event.payerName;
 
     const result = await axios.post(`${API_URL}/checkout`, {
-      price: product.id,
+      price: subscriptionPlan.id,
       paymentMethodType: "card",
       currency: "usd",
       email,
+      name,
     });
 
     const { success } = result.data;

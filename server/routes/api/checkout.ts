@@ -7,9 +7,9 @@ const router = express.Router();
 
 router.post("/", async (req: any, res: any) => {
   try {
-    const { price, email } = req.body;
+    const { price, email, name } = req.body;
 
-    const customer = await stripe.customers.create({ email });
+    const customer = await stripe.customers.create({ email, name });
 
     const subscription: any = await stripe.subscriptions.create({
       customer: customer.id,
