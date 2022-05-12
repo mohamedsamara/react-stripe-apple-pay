@@ -4,7 +4,7 @@ function success(res: Response, json: any) {
   res.status(200);
   res.json({
     success: true,
-    response: json,
+    ...json,
   });
   res.end();
 }

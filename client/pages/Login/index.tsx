@@ -34,10 +34,10 @@ const Login: FC = () => {
           <div className="mt-5">
             <div className="mb-4">
               <Link
-                to="/dashboard"
+                to="/checkout"
                 className="d-flex justify-content-center align-items-center rounded-pill p-4 text-decoration-none bg-black text-white text-center button-link"
               >
-                Log In
+                Checkout
               </Link>
             </div>
 

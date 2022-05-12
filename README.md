@@ -46,3 +46,16 @@ $ yarn build
 ```
 $ yarn start
 ```
+
+### Prerequisites to see the Apple Pay Button
+
+1. Download [domain association file](https://stripe.com/files/apple-pay/apple-developer-merchantid-domain-association) and host it at unders .well-known directory
+2. Download ngrok on your machine to run the website on HTTPS
+3. Register the ngrok domain with apple on [stripe tab](https://dashboard.stripe.com/settings/payments/apple_pay)
+
+### Run ngrok
+
+Run ngrok http 8080
+<br> OR <br>
+ngrok http 8080 -host-header="localhost:8080"
+ngrok http --host-header=rewrite 8080

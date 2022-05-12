@@ -3,9 +3,10 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 
-import { STRIPE_PUBLISHABLE_KEY } from "@constants/index";
+import { STRIPE_PUBLISHABLE_KEY } from "@/constants";
 import Login from "@pages/Login";
 import Dashboard from "@pages/Dashboard";
+import Checkout from "@pages/Checkout";
 import NoMatch from "@components/NoMatch";
 import RequireAuth from "@components/RequireAuth";
 
@@ -26,6 +27,7 @@ const App: FC = () => {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/checkout" element={<Checkout />} />
           <Route
             path="/dashboard"
             element={
